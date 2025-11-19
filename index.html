@@ -3,320 +3,449 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nazir A. Loan – Profile</title>
+<title>Dr. Nazir A. Loan — Profile</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ---------------- Root Variables ---------------- */
 :root{
-    --bg: #f3f4f6;
-    --card: #ffffff;
-    --text: #0b2130;
-    --muted: #4b5563;
-    --accent1: #a31d2f;   /* MIT red */
-    --accent2: #006a8e;   /* MIT teal */
-    --accent3: #f59e0b;
-    --radius: 12px;
-    --shadow: 0 6px 20px rgba(16,24,40,0.08);
+  --page-bg:#f3f4f6;
+  --card-bg:#ffffff;
+  --text:#0b2130;
+  --muted:#556270;
+  --accent-1:#a31d2f;
+  --accent-2:#006a8e;
+  --accent-3:#f59e0b;
+  --radius:12px;
+  --shadow:0 8px 28px rgba(16,24,40,0.08);
+  --nav-height:64px;
+  color-scheme:light;
 }
 
+/* Dark Mode */
+body.dark {
+  --page-bg:#0f1724;
+  --card-bg:#071029;
+  --text:#e6eef8;
+  --muted:#9fb7c6;
+  --shadow:0 8px 26px rgba(0,0,0,0.5);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+
+/* ---------------- Base Styles ---------------- */
 body{
-    margin:0;
-    font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
-    background:var(--bg);
-    color:var(--text);
-    padding:20px;
+  margin:0;
+  font-family:Inter,system-ui,Arial;
+  background:var(--page-bg);
+  color:var(--text);
+  transition:background .3s ease,color .3s ease;
 }
 
-/* ---------- LAYOUT ---------- */
-.container{
-    max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns: 300px 1fr 140px;
-    gap:20px;
+/* ---------------- Sticky Top Navbar ---------------- */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  height:var(--nav-height);
+  padding:10px 20px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+body.dark .topbar{
+  background:rgba(10,14,18,0.6);
+  border-color:rgba(255,255,255,0.05);
 }
 
-/* ---------- PROFILE CARD ---------- */
-.profile{
-    background:var(--card);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    overflow:hidden;
-    border-top:6px solid var(--accent1);
+.logo{
+  width:40px;height:40px;
+  border-radius:8px;
+  background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;
+}
+.brand h4{
+  margin:0 0 0 10px;
+  font-weight:800;
 }
 
-.profile-top{
-    height:400px;
-    background:#ddd url('photo@Naz.jpg') center/cover no-repeat;
+/* Buttons */
+.toggle{
+  border:1px solid rgba(0,0,0,0.1);
+  padding:6px 12px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:700;
+  background:none;
+}
+body.dark .toggle{
+  border-color:rgba(255,255,255,0.1);
 }
 
-.profile-body{
-    padding:18px;
+/* ---------------- Layout Grid ---------------- */
+.page{
+  max-width:1200px;
+  margin:20px auto;
+  padding:10px;
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:20px;
 }
 
-.name{
-    font-size:22px;
-    font-weight:800;
+/* ---------------- Profile Card ---------------- */
+.card{
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,0.04);
+}
+body.dark .card{
+  border:1px solid rgba(255,255,255,0.04);
 }
 
-.title{
-    font-size:13px;
-    color:var(--muted);
-    margin-bottom:12px;
+/* Circular Profile Frame */
+.profile-photo-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
+.profile-photo{
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid var(--accent-2);
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.profile-body{padding:18px}
+.name{font-size:22px;font-weight:800;margin:0}
+.title{font-size:13px;color:var(--muted);margin-bottom:10px}
+.bio{font-size:14px;color:var(--text);line-height:1.55}
 
 .links a{
-    display:block;
-    margin:6px 0;
-    color:var(--accent2);
-    font-size:14px;
-    text-decoration:none;
-    font-weight:600;
+  display:block;
+  margin:6px 0;
+  font-weight:700;
+  color:var(--accent-2);
+  text-decoration:none;
 }
 
-/* ---------- TOP TABS ---------- */
+/* Buttons */
+.btn{
+  padding:10px 12px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  display:inline-block;
+  margin-right:6px;
+}
+.btn-primary{
+  background:linear-gradient(90deg,var(--accent-1),#ff4b5c);
+  color:white;
+}
+.btn-ghost{
+  background:none;
+  border:1px solid rgba(0,0,0,0.1);
+  color:var(--text);
+}
+body.dark .btn-ghost{
+  border-color:rgba(255,255,255,0.1);
+}
+
+/* ---------------- Top Tabs ---------------- */
 .tabs-top{
-    display:flex;
-    background:var(--card);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    padding:10px;
-    gap:10px;
-    margin-bottom:12px;
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+}
+.tab{
+  padding:10px 14px;
+  background:#e5e7eb;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  border:none;
+}
+.tab.active{
+  background:var(--accent-2);
+  color:white;
+  transform:translateY(-3px);
 }
 
-.tab-btn{
-    padding:10px 14px;
-    border-radius:8px;
-    background:#e5e7eb;
-    border:none;
-    cursor:pointer;
-    font-weight:600;
+/* ---------------- Content Area ---------------- */
+.content{
+  background:var(--card-bg);
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
 }
-
-.tab-btn.active{
-    background:var(--accent2);
-    color:white;
-}
-
-/* ---------- RIGHT SIDE TABS ---------- */
-.tabs-right{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.tab-side{
-    background:var(--card);
-    padding:10px;
-    text-align:center;
-    border-radius:8px;
-    box-shadow:var(--shadow);
-    cursor:pointer;
-    font-weight:600;
-}
-
-.tab-side.active{
-    background:var(--accent1);
-    color:white;
-}
-
-/* ---------- MAIN CONTENT CARD ---------- */
-.main{
-    background:var(--card);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    padding:20px;
-    min-height:500px;
-}
-
-.section{display:none;}
-.section.active{display:block;}
-
 .ribbon{
-    height:8px;
-    background:linear-gradient(90deg,var(--accent1),var(--accent2));
-    border-radius:6px;
-    margin-bottom:12px;
+  height:8px;
+  border-radius:6px;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  margin-bottom:12px;
 }
 
-h1{
-    margin-top:0;
+.section{display:none;opacity:0;transform:translateY(10px);transition:.3s}
+.section.active{display:block;opacity:1;transform:translateY(0)}
+
+.footer{
+  text-align:center;
+  margin:20px 0;
+  font-size:13px;
+  color:var(--muted);
 }
 
-@media(max-width:950px){
-    .container{
-        grid-template-columns:1fr;
-    }
-    .tabs-right{
-        flex-direction:row;
-    }
+/* Dropdown Styles */
+details {
+  background: var(--card-bg);
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+body.dark details{
+  border-color: rgba(255,255,255,0.08);
+}
+details summary {
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  outline:none;
+}
+details a {
+  display:block;
+  padding:6px 0;
+  color:var(--accent-2);
+  font-weight:600;
+  text-decoration:none;
 }
 </style>
-
-<script>
-function switchTab(name){
-    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-    document.getElementById(name).classList.add("active");
-
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.querySelector(".tab-btn[data-tab='"+name+"']").classList.add("active");
-
-    document.querySelectorAll(".tab-side").forEach(b => b.classList.remove("active"));
-    document.querySelector(".tab-side[data-tab='"+name+"']").classList.add("active");
-}
-</script>
-
 </head>
+
 <body>
 
-<div class="container">
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="brand"><div class="logo">NL</div><h4>Dr. Nazir A. Loan</h4></div>
 
-    <!-- LEFT PROFILE -->
-    <div class="profile">
-        <div class="profile-top"></div>
+  <nav style="margin-left:40px;">
+    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('bio')">Biography</a>
+    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('pub')">Publications</a>
+    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('research')">Research</a>
+    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('teaching')">Teaching</a>
+  </nav>
 
-        <div class="profile-body">
-            <div class="name">Dr. Nazir A. Loan</div>
-            <div class="title">Ph.D. in Electronics • Multimedia Security & Embedded Systems</div>
+  <div style="margin-left:auto;display:flex;gap:12px;">
+    <button class="toggle" id="darkToggle">🌙 Dark</button>
+    <a class="btn btn-ghost" href="CV.pdf" target="_blank">Download CV</a>
+  </div>
+</header>
 
-            <div class="links">
-                <a href="https://electronics.uok.edu.in/Main/ProfilePage.aspx?Profile=P3737" target="_blank">University Profile</a>
-                <a href="https://www.linkedin.com/in/nazir-loan-63b37a116/" target="_blank">LinkedIn</a>
-                <a href="https://scholar.google.com/citations?user=tuwg40gAAAAJ&hl=en" target="_blank">Google Scholar</a>
-                <a href="https://www.webofscience.com/wos/author/record/OCL-4612-2025" target="_blank">Web of Science</a>
-                <a href="https://www.scopus.com/authid/detail.uri?authorId=56997291000" target="_blank">Scopus</a>
-                <a href="https://www.researchgate.net/profile/Nazir_Loan3" target="_blank">ResearchGate</a>
-                <a href="https://github.com" target="_blank">GitHub</a>
-            </div>
-        </div>
+<!-- MAIN PAGE GRID -->
+<main class="page">
+
+  <!-- LEFT PROFILE CARD -->
+  <aside class="card">
+
+    <!-- Circular Photo -->
+    <div class="profile-photo-wrapper">
+      <img src="photo@NAz.jpg" class="profile-photo" alt="Profile Photo">
     </div>
 
-    <!-- CENTER CONTENT -->
-    <div>
+    <div class="profile-body">
+      <p class="name">Dr. Nazir A. Loan</p>
+      <p class="title">Ph.D. in Electronics — Multimedia Security & Embedded Systems</p>
 
-        <!-- TOP TABS -->
-        <div class="tabs-top">
-            <button class="tab-btn active" data-tab="BIO" onclick="switchTab('BIO')">Biography</button>
-            <button class="tab-btn " data-tab="pub" onclick="switchTab('pub')">Publications</button>
-            <button class="tab-btn" data-tab="research" onclick="switchTab('research')">Research Interests</button>
-            <button class="tab-btn" data-tab="teaching" onclick="switchTab('teaching')">Teaching Interests</button>
-            <button class="tab-btn" data-tab="projects" onclick="switchTab('projects')">Projects & Codes</button>
-            <button class="tab-btn" data-tab="materials" onclick="switchTab('materials')">Materials</button>
-            <button class="tab-btn" data-tab="awards" onclick="switchTab('awards')">Awards</button>
-        </div>
+      <p class="bio">
+        Researcher in multimedia security, watermarking, encryption, deepfake detection, and intelligent embedded systems.
+      </p>
 
-        <!-- MAIN CONTENT -->
-        <div class="main">
-         <!-- Biography -->
-            <div class="section active" id="BIO">
-                <div class="ribbon"></div>
-                <h1>Biography</h1>
-                <p>to be added.</p>
-            </div>
+      <div class="links">
+        <a href="#" target="_blank">University Profile</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+        <a href="#" target="_blank">Web of Science</a>
+        <a href="#" target="_blank">Scopus</a>
+        <a href="https://www.researchgate.net" target="_blank">ResearchGate</a>
+        <a href="https://github.com" target="_blank">GitHub</a>
+      </div>
 
-            <!-- Publications -->
-            <div class="section active" id="pub">
-                <div class="ribbon"></div>
-                <h1>Publications</h1>
-                <p>List of journal articles, conference papers, book chapters (to be added).</p>
-            </div>
+      <div style="margin-top:12px;">
+        <a class="btn btn-primary" href="CV.pdf" target="_blank">Download CV</a>
+        <a class="btn btn-ghost" href="mailto:nazirloan786@gmail.com">Email</a>
+      </div>
 
-            <!-- Research Interests -->
-            <div class="section" id="research">
-                <div class="ribbon"></div>
-                <h1>Research Interests</h1>
-                <p>Overview of research areas (watermarking, encryption, deepfake detection, AI-based multimedia security, embedded automation).</p>
-            </div>
+    </div>
+  </aside>
 
-            <!-- Teaching Interests -->
-            <div class="section" id="teaching">
-                <div class="ribbon"></div>
-                <h1>Teaching Interests</h1>
-                <p>Microcontrollers, Microprocessors, Embedded Systems, Digital Electronics, Data Structures, Signals & Systems, Image Processing.</p>
-            </div>
+  <!-- RIGHT: CONTENT -->
+  <section>
+    <div class="tabs-top">
 
-            <!-- Projects -->
-            <div class="section" id="projects">
-                <div class="ribbon"></div>
-                <h1>Projects & Codes</h1>
-                <p>Links to GitHub projects and code repositories.</p>
-            </div>
+      <button class="tab active" data-tab="bio" onclick="switchTab('bio')">Biography</button>
+      <button class="tab" data-tab="pub" onclick="switchTab('pub')">Publications</button>
+      <button class="tab" data-tab="research" onclick="switchTab('research')">Research</button>
+      <button class="tab" data-tab="teaching" onclick="switchTab('teaching')">Teaching</button>
+      <button class="tab" data-tab="projects" onclick="switchTab('projects')">Projects & Codes</button>
+      <button class="tab" data-tab="materials" onclick="switchTab('materials')">Materials</button>
+      <button class="tab" data-tab="awards" onclickde="switchTab('awards')">Awards</button>
+      <button class="tab" data-tab="contact" onclick="switchTab('contact')">Contact</button>
 
-            <!-- Materials -->
-            <div class="section" id="materials">
-                <div class="ribbon"></div>
-                <h1>Materials</h1>
-                <p>Lecture slides, lab manuals, assignments, and notes will be available here.</p>
-            </div>
+    </div>
 
-            <!-- Awards -->
-            <div class="section" id="awards">
-                <div class="ribbon"></div>
-                <h1>Awards & Professional Service</h1>
-                <p>Gold Medal (M.Sc.), DST-INSPIRE Fellowship, Best Paper Presentation, IEEE Memberships, etc.</p>
-            </div>
+    <div class="content card">
 
-        </div>
+      <!-- BIOGRAPHY -->
+      <div id="bio" class="section active">
+        <div class="ribbon"></div>
+        <h2>Biography</h2>
+        <p>Short academic biography (add content here).</p>
+      </div>
+
+      <!-- PUBLICATIONS -->
+      <div id="pub" class="section">
+        <div class="ribbon"></div>
+        <h2>Publications</h2>
+        <p>Publications list here.</p>
+      </div>
+
+      <!-- RESEARCH -->
+      <div id="research" class="section">
+        <div class="ribbon"></div>
+        <h2>Research Interests</h2>
+        <p>Multimedia Security, Encryption, Embedded Systems.</p>
+      </div>
+
+      <!-- TEACHING -->
+      <div id="teaching" class="section">
+        <div class="ribbon"></div>
+        <h2>Teaching Interests</h2>
+        <p>Microcontrollers, Embedded Systems, Signals & Systems.</p>
+      </div>
+
+      <!-- PROJECTS -->
+      <div id="projects" class="section">
+        <div class="ribbon"></div>
+        <h2>Projects & Codes</h2>
+        <p>Click a category to download project PDFs.</p>
+
+        <details>
+          <summary>IoT Projects</summary>
+          <a href="project_iot_home_automation.pdf">Home Automation</a>
+          <a href="project_iot_health_monitor.pdf">Health Monitor</a>
+        </details>
+
+        <details>
+          <summary>Multimedia Security Projects</summary>
+          <a href="project_image_watermarking.pdf">Image Watermarking</a>
+          <a href="project_deepfake_detection.pdf">Deepfake Detection</a>
+        </details>
+
+        <details>
+          <summary>Embedded System Projects</summary>
+          <a href="project_embedded_heart_monitor.pdf">Heart Monitor</a>
+        </details>
+
+        <details>
+          <summary>Signal Processing Projects</summary>
+          <a href="project_signal_processing.pdf">Signal Processing Toolkit</a>
+        </details>
+
+      </div>
+
+      <!-- MATERIALS -->
+      <div id="materials" class="section">
+        <div class="ribbon"></div>
+        <h2>Materials</h2>
+        <p>Click a semester to download PDFs.</p>
+
+        <details>
+          <summary>Semester 1</summary>
+          <a href="sem1_unit1.pdf">Unit 1</a>
+          <a href="sem1_unit2.pdf">Unit 2</a>
+          <a href="sem1_notes.pdf">Complete Notes</a>
+        </details>
+
+        <details>
+          <summary>Semester 2</summary>
+          <a href="sem2_unit1.pdf">Unit 1</a>
+          <a href="sem2_unit2.pdf">Unit 2</a>
+        </details>
+
+        <details>
+          <summary>Semester 3</summary>
+          <a href="sem3_notes.pdf">Lecture Notes</a>
+        </details>
+
+        <details>
+          <summary>Semester 4</summary>
+          <a href="sem4_notes.pdf">Lecture Notes</a>
+        </details>
+
+        <details>
+          <summary>Lab Manuals</summary>
+          <a href="lab_manuals.pdf">Complete Lab Manual</a>
+        </details>
+
+        <details>
+          <summary>Assignments</summary>
+          <a href="assignments.pdf">Assignments</a>
+        </details>
+      </div>
+
+      <!-- AWARDS -->
+      <div id="awards" class="section">
+        <div class="ribbon"></div>
+        <h2>Awards</h2>
+        <p>Awards and recognitions.</p>
+      </div>
+
+      <!-- CONTACT -->
+      <div id="contact" class="section">
+        <div class="ribbon"></div>
+        <h2>Contact</h2>
+        <p>Email: <strong>nazirloan786@gmail.com</strong></p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  © <span id="year"></span> Dr. Nazir A. Loan • GitHub Pages
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Tab Switching */
+function switchTab(tab){
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  document.querySelector(`.tab[data-tab="${tab}"]`).classList.add("active");
+
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.getElementById(tab).classList.add("active");
+}
+
+/* Dark Mode */
+const toggle = document.getElementById("darkToggle");
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  toggle.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
+});
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
