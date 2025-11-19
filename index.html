@@ -1,408 +1,257 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nazir A. Loan — Profile</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nazir A. Loan – Profile</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
+rel="stylesheet">
 
-  <style>
-    :root{
-      --page-bg: #f3f4f6; /* light gray page background */
-      --card-bg: #ffffff; /* white high-contrast cards */
-      --text: #0b2130;     /* dark text */
-      --muted: #4b5563;    /* muted text */
-      --accent-primary: #a31d2f; /* MIT-like crimson ribbon */
-      --accent-secondary: #006a8e; /* teal/blue accent */
-      --accent-3: #f59e0b; /* warm pop yellow */
-      --ribbon-height: 8px;
-      --radius: 12px;
-      --shadow: 0 6px 20px rgba(16,24,40,0.08);
+<style>
+:root{
+    --bg: #f3f4f6;
+    --card: #ffffff;
+    --text: #0b2130;
+    --muted: #4b5563;
+    --accent1: #a31d2f;   /* MIT red */
+    --accent2: #006a8e;   /* MIT teal */
+    --accent3: #f59e0b;
+    --radius: 12px;
+    --shadow: 0 6px 20px rgba(16,24,40,0.08);
+}
+
+body{
+    margin:0;
+    font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+    background:var(--bg);
+    color:var(--text);
+    padding:20px;
+}
+
+/* ---------- LAYOUT ---------- */
+.container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 300px 1fr 140px;
+    gap:20px;
+}
+
+/* ---------- PROFILE CARD ---------- */
+.profile{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    border-top:6px solid var(--accent1);
+}
+
+.profile-top{
+    height:260px;
+    background:#ddd url('photo@Naz.jpg') center/cover no-repeat;
+}
+
+.profile-body{
+    padding:18px;
+}
+
+.name{
+    font-size:22px;
+    font-weight:800;
+}
+
+.title{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:12px;
+}
+
+.links a{
+    display:block;
+    margin:6px 0;
+    color:var(--accent2);
+    font-size:14px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* ---------- TOP TABS ---------- */
+.tabs-top{
+    display:flex;
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:10px;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.tab-btn{
+    padding:10px 14px;
+    border-radius:8px;
+    background:#e5e7eb;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.tab-btn.active{
+    background:var(--accent2);
+    color:white;
+}
+
+/* ---------- RIGHT SIDE TABS ---------- */
+.tabs-right{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.tab-side{
+    background:var(--card);
+    padding:10px;
+    text-align:center;
+    border-radius:8px;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    font-weight:600;
+}
+
+.tab-side.active{
+    background:var(--accent1);
+    color:white;
+}
+
+/* ---------- MAIN CONTENT CARD ---------- */
+.main{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:20px;
+    min-height:500px;
+}
+
+.section{display:none;}
+.section.active{display:block;}
+
+.ribbon{
+    height:8px;
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    border-radius:6px;
+    margin-bottom:12px;
+}
+
+h1{
+    margin-top:0;
+}
+
+@media(max-width:950px){
+    .container{
+        grid-template-columns:1fr;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--page-bg); color: var(--text); -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale; padding:28px;
+    .tabs-right{
+        flex-direction:row;
     }
+}
+</style>
 
-    .container {
-      max-width:1100px; margin: 0 auto; display:grid; grid-template-columns: 320px 1fr; gap:22px;
-    }
+<script>
+function switchTab(name){
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.getElementById(name).classList.add("active");
 
-    /* Left column (profile) */
-    .profile {
-      background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden;
-      border-top: 6px solid var(--accent-primary);
-    }
-    .avatar {
-      height:300px; background: linear-gradient(180deg, rgba(0,106,142,0.06), rgba(163,29,47,0.04));
-      display:flex; align-items:flex-end; padding:18px;
-    }
-    .avatar img { width:100%; height:100%; object-fit:cover; display:block; border-bottom-left-radius:0; border-top-left-radius:var(--radius) }
-    .profile-body { padding:18px; }
-    .name { font-size:20px; font-weight:800; letter-spacing:0.2px; color:var(--text); }
-    .tag { color:var(--muted); margin-top:6px; font-size:13px; }
-    .bio { margin-top:12px; font-size:14px; color:var(--text); line-height:1.45 }
-    .badges { margin-top:14px; display:flex; flex-wrap:wrap; gap:8px }
-    .badge { background: linear-gradient(90deg, rgba(0,106,142,0.06), rgba(163,29,47,0.03));
-            border:1px solid rgba(0,0,0,0.04); padding:7px 10px; border-radius:999px; font-weight:600; font-size:13px; color:var(--text) }
-    .contact { margin-top:14px; display:flex; flex-direction:column; gap:8px; }
-    .btn {
-      display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; font-weight:700;
-      font-size:14px; border:none; cursor:pointer; text-decoration:none; color:white;
-    }
-    .btn.primary { background: linear-gradient(90deg, var(--accent-primary), #ff4b5c); }
-    .btn.ghost { background:transparent; color:var(--accent-secondary); border:1px solid rgba(0,0,0,0.06) }
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelector(".tab-btn[data-tab='"+name+"']").classList.add("active");
 
-    .small { font-size:13px; color:var(--muted) }
+    document.querySelectorAll(".tab-side").forEach(b => b.classList.remove("active"));
+    document.querySelector(".tab-side[data-tab='"+name+"']").classList.add("active");
+}
+</script>
 
-    /* Right column (main content) */
-    .main {
-      display:flex; flex-direction:column; gap:16px;
-    }
-
-    .ribbon {
-      height: var(--ribbon-height); border-top-left-radius: var(--radius); border-top-right-radius: var(--radius);
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    }
-
-    .card {
-      background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden;
-      border:1px solid rgba(16,24,40,0.04);
-    }
-    .card .card-body { padding:18px; }
-
-    /* Tabs */
-    .tabs { display:flex; gap:10px; padding:12px; flex-wrap:wrap; align-items:center; }
-    .tab {
-      padding:9px 12px; border-radius:8px; cursor:pointer; font-weight:700; font-size:13px;
-      background:transparent; color:var(--text); border:1px solid rgba(0,0,0,0.04);
-    }
-    .tab.active { background: linear-gradient(90deg, rgba(0,106,142,0.08), rgba(163,29,47,0.06)); box-shadow: 0 8px 24px rgba(16,24,40,0.06); }
-
-    h1,h2,h3 { margin:0; color:var(--text) }
-    h1 { font-size:22px; font-weight:800; }
-    h2 { font-size:18px; font-weight:700; margin-bottom:8px }
-    p { color:var(--text); margin:6px 0 12px 0; line-height:1.5 }
-    ul { margin:8px 0 12px 18px; color:var(--text) }
-
-    .pub { padding:12px; border-radius:10px; background:#fbfbfc; border:1px solid rgba(0,0,0,0.03); margin-bottom:10px }
-    .pub .meta { font-size:13px; color:var(--muted); margin-bottom:6px }
-    .project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px }
-    .project { padding:12px; border-radius:8px; background:#fff; border:1px solid rgba(0,0,0,0.03) }
-
-    /* download CV area */
-    .cv-row { display:flex; gap:10px; align-items:center; flex-wrap:wrap }
-    .cv-link { text-decoration:none; }
-
-    footer.site-foot { margin-top:8px; color:var(--muted); font-size:13px; display:flex; justify-content:space-between; align-items:center; padding:12px 0; }
-
-    /* Responsive */
-    @media (max-width:980px){
-      .container{ grid-template-columns: 1fr; padding:12px; gap:12px }
-      .avatar{ height:220px }
-    }
-  </style>
 </head>
 <body>
-  <div class="container" role="main">
 
-    <!-- LEFT / Profile -->
-    <aside class="profile" aria-label="Profile card">
-      <div class="avatar">
-        <!-- Replace with your photo file in repo named avatar.jpg -->
-        <img src="avatar-placeholder.jpg" alt="Nazir A. Loan — photo" onerror="this.style.display='none'">
-        <div style="position:absolute; padding:16px; color:white; mix-blend-mode:normal">
-          <!-- optional overlay; if no image used, this shows -->
+<div class="container">
+
+    <!-- LEFT PROFILE -->
+    <div class="profile">
+        <div class="profile-top"></div>
+
+        <div class="profile-body">
+            <div class="name">Dr. Nazir A. Loan</div>
+            <div class="title">Ph.D. in Electronics • Multimedia Security & Embedded Systems</div>
+
+            <div class="links">
+                <a href="#" target="_blank">University Profile</a>
+                <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+                <a href="#" target="_blank">Web of Science</a>
+                <a href="#" target="_blank">Scopus</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <div class="profile-body">
-        <div class="name">Nazir A. Loan</div>
-        <div class="tag">Ph.D. in Electronics — Multimedia Security & Embedded Systems</div>
+    <!-- CENTER CONTENT -->
+    <div>
 
-        <p class="bio">Researcher in multimedia security (watermarking, encryption, deepfake detection) and embedded/AI-driven systems. Experienced lecturer with postgraduate teaching in embedded systems, digital image processing, signals & systems, and more.</p>
-
-        <div class="badges" aria-hidden="true">
-          <span class="badge">Multimedia Security</span>
-          <span class="badge">Embedded Systems</span>
-          <span class="badge">Image Processing</span>
-          <span class="badge">AI & Deepfakes</span>
-        </div>
-
-        <div class="contact" style="margin-top:12px">
-          <div class="small">Contact</div>
-          <div style="display:flex; gap:8px; margin-top:6px; flex-wrap:wrap">
-            <a class="btn primary cv-link" href="CV.pdf" target="_blank" rel="noopener">Download CV</a>
-            <a class="btn ghost" href="mailto:nazirloan786@gmail.com">Email</a>
-          </div>
-
-          <div style="margin-top:10px" class="small">
-            <a href="https://scholar.google.com/citations?user=tuwg40gAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> •
-            <a href="https://www.researchgate.net/profile/Nazir_Loan3" target="_blank" rel="noopener">ResearchGate</a> •
-            <a href="https://www.linkedin.com/in/nazir-loan-63b37a116/" target="_blank" rel="noopener">LinkedIn</a> •
-            <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-          </div>
+        <!-- TOP TABS -->
+        <div class="tabs-top">
+            <button class="tab-btn active" data-tab="pub" onclick="switchTab('pub')">Publications</button>
+            <button class="tab-btn" data-tab="research" onclick="switchTab('research')">Research Interests</button>
+            <button class="tab-btn" data-tab="teaching" onclick="switchTab('teaching')">Teaching Interests</button>
+            <button class="tab-btn" data-tab="projects" onclick="switchTab('projects')">Projects & Codes</button>
+            <button class="tab-btn" data-tab="materials" onclick="switchTab('materials')">Materials</button>
+            <button class="tab-btn" data-tab="awards" onclick="switchTab('awards')">Awards</button>
         </div>
 
-        <div style="margin-top:14px">
-          <div class="small">Available to teach</div>
-          <div class="small" style="margin-top:6px; color:var(--text)">
-            Microcontrollers, Microprocessor Architecture & Assembly, Advanced Embedded Programming, Digital Electronics & C, Signals & Systems, Digital Image Processing, Data Structures, Simulation & MATLAB labs.
-          </div>
+        <!-- MAIN CONTENT -->
+        <div class="main">
+
+            <!-- Publications -->
+            <div class="section active" id="pub">
+                <div class="ribbon"></div>
+                <h1>Publications</h1>
+                <p>List of journal articles, conference papers, book chapters (to be added).</p>
+            </div>
+
+            <!-- Research Interests -->
+            <div class="section" id="research">
+                <div class="ribbon"></div>
+                <h1>Research Interests</h1>
+                <p>Overview of research areas (watermarking, encryption, deepfake detection, AI-based multimedia security, embedded automation).</p>
+            </div>
+
+            <!-- Teaching Interests -->
+            <div class="section" id="teaching">
+                <div class="ribbon"></div>
+                <h1>Teaching Interests</h1>
+                <p>Microcontrollers, Microprocessors, Embedded Systems, Digital Electronics, Data Structures, Signals & Systems, Image Processing.</p>
+            </div>
+
+            <!-- Projects -->
+            <div class="section" id="projects">
+                <div class="ribbon"></div>
+                <h1>Projects & Codes</h1>
+                <p>Links to GitHub projects and code repositories.</p>
+            </div>
+
+            <!-- Materials -->
+            <div class="section" id="materials">
+                <div class="ribbon"></div>
+                <h1>Materials</h1>
+                <p>Lecture slides, lab manuals, assignments, and notes will be available here.</p>
+            </div>
+
+            <!-- Awards -->
+            <div class="section" id="awards">
+                <div class="ribbon"></div>
+                <h1>Awards & Professional Service</h1>
+                <p>Gold Medal (M.Sc.), DST-INSPIRE Fellowship, Best Paper Presentation, IEEE Memberships, etc.</p>
+            </div>
+
         </div>
-      </div>
-    </aside>
 
-    <!-- RIGHT / Main -->
-    <main class="main" aria-label="Main content">
-
-      <!-- Publications ribbon & card -->
-      <div class="card">
-        <div class="ribbon" style="background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));"></div>
-        <div class="card-body">
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
-            <div>
-              <h1>Publications</h1>
-              <div class="small">Selected and complete list (from CV)</div>
-            </div>
-            <div class="cv-row">
-              <a class="btn primary cv-link" href="CV.pdf" target="_blank" rel="noopener">Download full CV (PDF)</a>
-              <a class="btn ghost" href="https://scholar.google.com/citations?user=tuwg40gAAAAJ&hl=en" target="_blank" rel="noopener">View Scholar</a>
-            </div>
-          </div>
-
-          <hr style="margin:14px 0; border:none; border-top:1px solid rgba(16,24,40,0.04)">
-
-          <!-- Book Chapters -->
-          <h2>Book Chapters</h2>
-          <div class="pub">
-            <div class="meta">Parah, S. A., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2017)</div>
-            <div><strong>A Robust and Computationally Efficient Digital Watermarking Technique Using Inter Block Pixel Differencing.</strong> In <em>Multimedia Forensics and Security</em>. Springer, Cham.</div>
-          </div>
-          <div class="pub">
-            <div class="meta">Parah et al. (2019)</div>
-            <div><strong>Realization of an Adaptive Data Hiding System for Electronic Patient Record, Embedding in Medical Images.</strong> In <em>Security in Smart Cities</em>. Springer.</div>
-          </div>
-          <div class="pub">
-            <div class="meta">Parah et al. (2019)</div>
-            <div><strong>Secure and reversible data hiding scheme for healthcare system using magic rectangle and a new interpolation technique.</strong> In <em>Healthcare Data Analytics and Management</em>. Academic Press.</div>
-          </div>
-          <div class="pub">
-            <div class="meta">Parah et al. (2019)</div>
-            <div><strong>A reversible and secure electronic patient record embedding technique using histogram bin shifting and RC6 encryption.</strong> In <em>Healthcare Data Analytics and Management</em>. Academic Press.</div>
-          </div>
-          <div class="pub">
-            <div class="meta">Parah et al. (2017)</div>
-            <div><strong>Pixel repetition technique: A high capacity and reversible data hiding method for e-healthcare applications.</strong> In <em>Intelligent Techniques in Signal Processing for Multimedia Security</em>. Springer.</div>
-          </div>
-
-          <!-- Book -->
-          <h2 style="margin-top:10px">Book</h2>
-          <div class="pub">
-            <div class="meta">Loan, N. — 2021</div>
-            <div><strong>Design of Oversampled ΣΔ ADC Decimation Filters with High Performance.</strong> LAP LAMBERT Academic Publishing.</div>
-          </div>
-
-          <!-- Journal Articles -->
-          <h2 style="margin-top:10px">Journal Articles (selected)</h2>
-          <div class="pub">
-            <div class="meta">Loan, N. A., Hurrah, N. N., Parah, S. A., Lee, J. W., Sheikh, J. A., & Bhat, G. M. — IEEE Access, 2018</div>
-            <div><strong>Secure and Robust Digital Image Watermarking using Coefficient Differencing and Chaotic Encryption.</strong></div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Loan, N. A., Parah, S. A., Sheikh, J. A., Akhoon, J. A., & Bhat, G. M. — Journal of Biomedical Informatics, 2017</div>
-            <div><strong>Hiding Electronic Patient Record (EPR) in medical images: A high capacity and computationally efficient technique for e-healthcare applications.</strong></div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Altaf, N., Loan, N. A., Hussan, M., Parah, S. A., (2024)</div>
-            <div><strong>TDLCI: An efficient scheme for tamper detection and localization in color images.</strong> Multimedia Tools and Applications.</div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Hurrah, N. N., Loan, N. A., Parah, S. A., Sheikh, J. A., et al. — IEEE Transactions on Industrial Informatics</div>
-            <div><strong>INDFORG: Industrial Forgery Detection using Automatic Rotation Angle Detection and Correction.</strong></div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Hurrah, N. N., Parah, S. A., Loan, N. A., Sheikh, J. A., Elhoseny, M., Muhammad, K. — Future Generation Computer Systems, 2019</div>
-            <div><strong>Dual watermarking framework for privacy protection and content authentication of multimedia.</strong></div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Parah, S. A., Loan, N. A., Shah, A. A., Sheikh, J. A., & Bhat, G. M. — Nonlinear Dynamics, 2018</div>
-            <div><strong>A new secure and robust watermarking technique based on logistic map and modification of DC coefficient.</strong></div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Kaw, J. A., Loan, N. A., Parah, S. A., Muhammad, K., Sheikh, J. A., & Bhat, G. M. — International Journal of Information Management, 2019</div>
-            <div><strong>A reversible and secure patient information hiding system for IoT driven e-health.</strong></div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Parah et al. (2018)</div>
-            <div><strong>An efficient watermarking technique for tamper detection and localization of medical images.</strong> Journal of Ambient Intelligence and Humanized Computing.</div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Parah et al. (2016)</div>
-            <div><strong>Robust and blind watermarking technique in DCT domain using inter-block coefficient differencing.</strong> Digital Signal Processing.</div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Parah et al. (2018)</div>
-            <div><strong>Electronic Health Record hiding in Images for smart city applications: A computationally efficient and reversible information hiding technique for secure communication.</strong> Future Generation Computer Systems, vol. 108, 2018.</div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Parah, S. A., Ahad, F., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2017)</div>
-            <div><strong>A New Reversible and high capacity data hiding technique for E-healthcare applications.</strong> Multimedia Tools and Applications.</div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Parah et al. (2017)</div>
-            <div><strong>Information hiding in edges: a high capacity information hiding technique using hybrid edge detection.</strong> Multimedia Tools and Applications.</div>
-          </div>
-
-          <div class="pub">
-            <div class="meta">Parah et al. (2017)</div>
-            <div><strong>Information hiding in medical images: a robust medical image watermarking system for E-healthcare.</strong> Multimedia Tools and Applications.</div>
-          </div>
-
-          <!-- conferences & national conferences summary link -->
-          <p style="margin-top:12px">See full conference, national, and book chapter lists in the downloadable CV (link above).</p>
-        </div>
-      </div>
-
-      <!-- Research & Teaching area -->
-      <div class="card">
-        <div class="ribbon" style="background: linear-gradient(90deg, var(--accent-secondary), var(--accent-3));"></div>
-        <div class="card-body">
-          <div style="display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; justify-content:space-between">
-            <div style="flex:1 1 420px">
-              <h2>Research Interests</h2>
-              <p>I focus on multimedia security and privacy-preserving systems — robust watermarking, image/audio/video encryption, deepfake and synthetic-media detection, secure data handling in e-health systems, AI-driven multimedia processing, and intelligent automation for embedded systems.</p>
-
-              <h3 style="margin-top:12px">Keywords / Topics</h3>
-              <ul>
-                <li>Digital Watermarking & Steganography</li>
-                <li>Image/Video Encryption & Authentication</li>
-                <li>Deepfake Detection & Content Verification</li>
-                <li>Secure IoT & E-health Data Management</li>
-                <li>AI-driven Multimedia Processing & Embedded Intelligence</li>
-              </ul>
-            </div>
-
-            <div style="flex:1 1 300px; min-width:260px;">
-              <h2>Teaching Interests</h2>
-              <p>Experienced in designing and delivering postgraduate and undergraduate courses with a lab-first approach and real projects.</p>
-              <ul>
-                <li>Microcontroller Architecture & Programming (8051, PIC, Arduino)</li>
-                <li>Microprocessor Architecture & Assembly (8086)</li>
-                <li>Advanced Embedded Programming & Real-Time Systems</li>
-                <li>Computer Organization & Architecture</li>
-                <li>Digital Electronics & C Programming</li>
-                <li>Signals & Systems; Digital Image Processing</li>
-                <li>Data Structures, Simulation & MATLAB labs</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Projects & Codes -->
-      <div class="card">
-        <div class="ribbon" style="background: linear-gradient(90deg, #7f5af0, var(--accent-primary));"></div>
-        <div class="card-body">
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
-            <div>
-              <h2>Projects & Codes</h2>
-              <div class="small">Examples of mentored student projects and prototypes</div>
-            </div>
-
-            <div class="small">Link projects to GitHub for live code and demos</div>
-          </div>
-
-          <div style="margin-top:12px" class="project-grid">
-            <div class="project">
-              <div style="font-weight:800">Home Appliances Control System Using IR</div>
-              <div class="small">Role: Developer. Tools: IR sensors, microcontroller. Outcome: Smart appliance control prototype.</div>
-            </div>
-
-            <div class="project">
-              <div style="font-weight:800">Automated Thermal Comfort System for Healthcare Bedding</div>
-              <div class="small">Role: Mentor. Embedded system for adaptive temperature control in hospital beds.</div>
-            </div>
-
-            <div class="project">
-              <div style="font-weight:800">Automatic Irrigation System using Arduino Uno</div>
-              <div class="small">Role: Mentor. IoT-based agriculture solution for efficient water usage.</div>
-            </div>
-
-            <div class="project">
-              <div style="font-weight:800">Human Presence Detection in Smart Home Systems</div>
-              <div class="small">Role: Mentor. Sensors + microcontroller for energy-saving automation.</div>
-            </div>
-
-            <div class="project">
-              <div style="font-weight:800">Secure Video Data Hiding System (MATLAB GUI)</div>
-              <div class="small">Role: Mentor. GUI-based steganography, encryption demonstrations.</div>
-            </div>
-          </div>
-
-          <p style="margin-top:12px">Want these listed with GitHub links and short READMEs? I can generate individual README templates for each project.</p>
-        </div>
-      </div>
-
-      <!-- Teaching Materials -->
-      <div class="card">
-        <div class="ribbon" style="background: linear-gradient(90deg, var(--accent-3), var(--accent-secondary));"></div>
-        <div class="card-body">
-          <h2>Teaching Materials</h2>
-          <p>Upload or place the following files in your repo and link to them here (examples shown):</p>
-          <ul>
-            <li><strong>Microcontroller Lab Manual (Keil/Proteus)</strong> — lab PDFs and sample code</li>
-            <li><strong>Embedded Systems - Practical Assignments</strong> — task sheets & solutions</li>
-            <li><strong>MATLAB Signal Processing Notebooks</strong> — .mlx / .m files</li>
-            <li><strong>Digital Image Processing - Example Code</strong> — MATLAB demos and datasets</li>
-            <li><strong>Lecture Slides & Exam Sheets</strong> — upload as PDFs</li>
-          </ul>
-          <p class="small" style="margin-top:8px">Place files in the repository (e.g., /materials/) and link them to enable downloads for students.</p>
-        </div>
-      </div>
-
-      <!-- Awards / Service -->
-      <div class="card">
-        <div class="ribbon" style="background: linear-gradient(90deg, var(--accent-primary), #7f5af0);"></div>
-        <div class="card-body">
-          <h2>Achievements & Professional Service</h2>
-          <ul>
-            <li>Gold Medalist — M.Sc. Electronics, University of Kashmir (First Class First).</li>
-            <li>Junior & Senior Research Fellowships — DST-INSPIRE Fellowship (2015–2019).</li>
-            <li>Best Paper Presentation Award — COMMUNE 2015, University of Kashmir.</li>
-            <li>IEEE Student Member & IEEE Signal Processing Society Member.</li>
-            <li>Committee member and organizer for national/international seminars and departmental events (2014–2018).</li>
-          </ul>
-        </div>
-      </div>
-
-      <footer class="site-foot">
-        <div>Built for GitHub Pages • Update content in <code>index.html</code></div>
-        <div style="opacity:0.9">Replace <code>avatar-placeholder.jpg</code> and <code>CV.pdf</code> in the repo to personalize</div>
-      </footer>
-    </main>
-  </div>
-
-  <script>
-    // Simple accessibility-friendly tab behavior (if you later want tabs)
-    // Current layout is multi-section; navigation can be added if required.
-
-    // Helpful: if you use anchor "#publications" etc. you can link to sections
-  </script>
 </body>
 </html>
