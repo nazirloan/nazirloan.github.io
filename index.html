@@ -1,439 +1,59 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dr. Nazir A. Loan — Profile</title>
+import json
+import requests
+import re
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+SCOPUS_ID = "56997291000"
 
-<style>
-/* ---------------- Root Variables ---------------- */
-:root{
-  --page-bg:#f3f4f6;
-  --card-bg:#ffffff;
-  --text:#0b2130;
-  --muted:#556270;
-  --accent-1:#a31d2f;
-  --accent-2:#006a8e;
-  --accent-3:#f59e0b;
-  --radius:12px;
-  --shadow:0 8px 28px rgba(16,24,40,0.08);
-  --nav-height:64px;
-  color-scheme:light;
-}
+def get_scopus_metrics(api_key):
+    url = f"https://api.elsevier.com/content/author/author_id/{SCOPUS_ID}?view=ENHANCED"
+    headers = {"X-ELS-APIKey": api_key}
 
-/* Dark Mode */
-body.dark {
-  --page-bg:#0f1724;
-  --card-bg:#071029;
-  --text:#e6eef8;
-  --muted:#9fb7c6;
-  --shadow:0 8px 26px rgba(0,0,0,0.5);
-  color-scheme:dark;
-}
+    r = requests.get(url, headers=headers)
 
-*{box-sizing:border-box}
+    if r.status_code != 200:
+        print("Error:", r.text)
+        return None
 
-/* ---------------- Base Styles ---------------- */
-body{
-  margin:0;
-  font-family:Inter,system-ui,Arial;
-  background:var(--page-bg);
-  color:var(--text);
-  transition:background .3s ease,color .3s ease;
-}
+    data = r.json()
+    author = data["author-retrieval-response"][0]
 
-/* ---------------- Sticky Top Navbar ---------------- */
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:50;
-  display:flex;
-  align-items:center;
-  height:var(--nav-height);
-  padding:10px 20px;
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid rgba(0,0,0,0.06);
-}
-body.dark .topbar{
-  background:rgba(10,14,18,0.6);
-  border-color:rgba(255,255,255,0.05);
-}
+    h_index = author.get("h-index", "N/A")
+    citations = author["coredata"].get("citation-count", "N/A")
 
-.logo{
-  width:40px;height:40px;
-  border-radius:8px;
-  background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-weight:800;
-}
-.brand h4{
-  margin:0 0 0 10px;
-  font-weight:800;
-}
+    # Scopus does not provide i10-index
+    i10_index = "N/A"
 
-/* Buttons */
-.toggle{
-  border:1px solid rgba(0,0,0,0.1);
-  padding:6px 12px;
-  border-radius:20px;
-  cursor:pointer;
-  font-weight:700;
-  background:none;
-}
-body.dark .toggle{
-  border-color:rgba(255,255,255,0.1);
-}
+    return citations, h_index, i10_index
 
-/* ---------------- Layout Grid ---------------- */
-.page{
-  max-width:1200px;
-  margin:20px auto;
-  padding:10px;
-  display:grid;
-  grid-template-columns:300px 1fr;
-  gap:20px;
-}
 
-/* ---------------- Profile Card ---------------- */
-.card{
-  background:var(--card-bg);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  border:1px solid rgba(0,0,0,0.04);
-}
-body.dark .card{
-  border:1px solid rgba(255,255,255,0.04);
-}
+def update_html(citations, h_index, i10_index):
+    with open("index.html", "r", encoding="utf-8") as f:
+        html = f.read()
 
-/* Circular Photo Frame (perfectly fitted) */
-.profile-photo-wrapper{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.profile-photo{
-  width:170px;
-  height:170px;
-  border-radius:50%;
-  object-fit:cover;
-  object-position:center;
-  border:5px solid var(--accent-2);
-  box-shadow:0 4px 12px rgba(0,0,0,0.2);
-}
+    html = html.replace("{{CITATIONS}}", str(citations))
+    html = html.replace("{{HINDEX}}", str(h_index))
+    html = html.replace("{{I10INDEX}}", str(i10_index))
 
-/* Profile body */
-.profile-body{padding:18px}
-.name{font-size:22px;font-weight:800;margin:0}
-.title{font-size:13px;color:var(--muted);margin-bottom:10px}
-.bio{font-size:14px;color:var(--text);line-height:1.55}
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html)
 
-.links a{
-  display:block;
-  margin:6px 0;
-  font-weight:700;
-  color:var(--accent-2);
-  text-decoration:none;
-}
 
-/* Buttons */
-.btn{
-  padding:10px 12px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:700;
-  display:inline-block;
-  margin-right:6px;
-}
-.btn-primary{
-  background:linear-gradient(90deg,var(--accent-1),#ff4b5c);
-  color:white;
-}
-.btn-ghost{
-  background:none;
-  border:1px solid rgba(0,0,0,0.1);
-  color:var(--text);
-}
-body.dark .btn-ghost{
-  border-color:rgba(255,255,255,0.1);
-}
+def main():
+    # Load API key from environment variable
+    import os
+    api_key = os.getenv("SCOPUS_API_KEY")
 
-/* ---------------- Top Tabs ---------------- */
-.tabs-top{
-  display:flex;
-  gap:10px;
-  margin-bottom:10px;
-}
-.tab{
-  padding:10px 14px;
-  background:#e5e7eb;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  border:none;
-}
-.tab.active{
-  background:var(--accent-2);
-  color:white;
-  transform:translateY(-3px);
-}
+    if not api_key:
+        print("Missing API key")
+        return
 
-/* ---------------- Content Area ---------------- */
-.content{
-  background:var(--card-bg);
-  padding:20px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-.ribbon{
-  height:8px;
-  border-radius:6px;
-  background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
-  margin-bottom:12px;
-}
+    metrics = get_scopus_metrics(api_key)
+    if metrics:
+        update_html(*metrics)
+        print("Scopus metrics updated successfully!")
+    else:
+        print("Failed to retrieve metrics.")
 
-.section{display:none;opacity:0;transform:translateY(10px);transition:.3s}
-.section.active{display:block;opacity:1;transform:translateY(0)}
 
-.footer{
-  text-align:center;
-  margin:20px 0;
-  font-size:13px;
-  color:var(--muted);
-}
-
-/* Dropdown Styles */
-details {
-  background: var(--card-bg);
-  border:1px solid rgba(0,0,0,0.08);
-  border-radius:10px;
-  padding:12px;
-  margin-bottom:10px;
-  cursor:pointer;
-}
-body.dark details{
-  border-color: rgba(255,255,255,0.08);
-}
-details summary {
-  font-weight:700;
-  font-size:15px;
-  cursor:pointer;
-}
-details a {
-  display:block;
-  padding:6px 0;
-  color:var(--accent-2);
-  font-weight:600;
-  text-decoration:none;
-}
-</style>
-</head>
-
-<body>
-
-<!-- TOP BAR -->
-<header class="topbar">
-  <div class="brand"><div class="logo">NL</div><h4>Dr. Nazir A. Loan</h4></div>
-
-  <!-- UPDATED FULL TOP NAV (ALL TABS CLICKABLE) -->
-  <nav style="margin-left:40px;">
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('bio')">Biography</a>
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('pub')">Publications</a>
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('research')">Research</a>
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('teaching')">Teaching</a>
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('projects')">Projects</a>
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('materials')">Materials</a>
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('awards')">Awards</a>
-    <a style="margin-right:15px;font-weight:700;cursor:pointer" onclick="switchTab('contact')">Contact</a>
-  </nav>
-
-  <div style="margin-left:auto;display:flex;gap:12px;">
-    <button class="toggle" id="darkToggle">🌙 Dark</button>
-    <a class="btn btn-ghost" href="CV.pdf" target="_blank">Download CV</a>
-  </div>
-</header>
-
-<!-- MAIN PAGE GRID -->
-<main class="page">
-
-  <!-- LEFT PROFILE CARD -->
-  <aside class="card">
-
-    <!-- Circular Photo -->
-    <div class="profile-photo-wrapper">
-      <img src="photo@Naz.jpg" class="profile-photo" alt="Profile Photo">
-    </div>
-
-    <div class="profile-body">
-      <p class="name">Dr. Nazir A. Loan</p>
-      <p class="title">Ph.D. in Electronics — Multimedia Security & Embedded Systems</p>
-
-      <p class="bio">
-        Researcher in multimedia security, watermarking, encryption, deepfake detection, and intelligent embedded systems.
-      </p>
-
-      <div class="links">
-        <a href="#" target="_blank">University Profile</a>
-        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-        <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
-        <a href="#" target="_blank">Web of Science</a>
-        <a href="#" target="_blank">Scopus</a>
-        <a href="https://www.researchgate.net" target="_blank">ResearchGate</a>
-        <a href="https://github.com" target="_blank">GitHub</a>
-      </div>
-
-      <div style="margin-top:12px;">
-        <a class="btn btn-primary" href="CV.pdf" target="_blank">Download CV</a>
-        <a class="btn btn-ghost" href="mailto:nazirloan786@gmail.com">Email</a>
-      </div>
-
-    </div>
-  </aside>
-
-  <!-- RIGHT CONTENT -->
-  <section>
-    <div class="tabs-top">
-
-      <button class="tab active" data-tab="bio" onclick="switchTab('bio')">Biography</button>
-      <button class="tab" data-tab="pub" onclick="switchTab('pub')">Publications</button>
-      <button class="tab" data-tab="research" onclick="switchTab('research')">Research</button>
-      <button class="tab" data-tab="teaching" onclick="switchTab('teaching')">Teaching</button>
-      <button class="tab" data-tab="projects" onclick="switchTab('projects')">Projects & Codes</button>
-      <button class="tab" data-tab="materials" onclick="switchTab('materials')">Materials</button>
-      <button class="tab" data-tab="awards" onclick="switchTab('awards')">Awards</button>
-      <button class="tab" data-tab="contact" onclick="switchTab('contact')">Contact</button>
-
-    </div>
-
-    <div class="content card">
-
-      <!-- BIOGRAPHY -->
-      <div id="bio" class="section active">
-        <div class="ribbon"></div>
-        <h2>Biography</h2>
-        <p>Short biography here.</p>
-      </div>
-
-      <!-- PUBLICATIONS -->
-      <div id="pub" class="section">
-        <div class="ribbon"></div>
-        <h2>Publications</h2>
-        <p>Your publications here.</p>
-      </div>
-
-      <!-- RESEARCH -->
-      <div id="research" class="section">
-        <div class="ribbon"></div>
-        <h2>Research Interests</h2>
-        <p>Multimedia Security, Embedded Systems, Encryption.</p>
-      </div>
-
-      <!-- TEACHING -->
-      <div id="teaching" class="section">
-        <div class="ribbon"></div>
-        <h2>Teaching Interests</h2>
-        <p>Embedded Systems, Microcontrollers, Digital Electronics.</p>
-      </div>
-
-      <!-- PROJECTS -->
-      <div id="projects" class="section">
-        <div class="ribbon"></div>
-        <h2>Projects & Codes</h2>
-
-        <details>
-          <summary>IoT Projects</summary>
-          <a href="project1.pdf">Smart Home Automation</a>
-          <a href="project2.pdf">IoT Health Monitoring</a>
-        </details>
-
-        <details>
-          <summary>Multimedia Security Projects</summary>
-          <a href="project3.pdf">Image Watermarking</a>
-          <a href="project4.pdf">Deepfake Detection</a>
-        </details>
-
-        <details>
-          <summary>Embedded Projects</summary>
-          <a href="project5.pdf">Heartbeat Monitor</a>
-        </details>
-
-      </div>
-
-      <!-- MATERIALS -->
-      <div id="materials" class="section">
-        <div class="ribbon"></div>
-        <h2>Materials</h2>
-
-        <details>
-          <summary>Semester 1</summary>
-          <a href="sem1_notes.pdf">Notes</a>
-          <a href="sem1_unit1.pdf">Unit 1</a>
-        </details>
-
-        <details>
-          <summary>Semester 2</summary>
-          <a href="sem2_notes.pdf">Notes</a>
-        </details>
-
-        <details>
-          <summary>Semester 3</summary>
-          <a href="sem3_notes.pdf">Notes</a>
-        </details>
-
-        <details>
-          <summary>Lab Manuals</summary>
-          <a href="lab.pdf">Lab Manual</a>
-        </details>
-
-      </div>
-
-      <!-- AWARDS -->
-      <div id="awards" class="section">
-        <div class="ribbon"></div>
-        <h2>Awards</h2>
-        <p>Your awards here.</p>
-      </div>
-
-      <!-- CONTACT -->
-      <div id="contact" class="section">
-        <div class="ribbon"></div>
-        <h2>Contact</h2>
-        <p><strong>Email:</strong> nazirloan786@gmail.com</p>
-      </div>
-
-    </div>
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  © <span id="year"></span> Dr. Nazir A. Loan • GitHub Pages
-</footer>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-/* Tab Switch */
-function switchTab(tab){
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-  document.querySelector(`.tab[data-tab="${tab}"]`).classList.add("active");
-
-  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-  document.getElementById(tab).classList.add("active");
-}
-
-/* Dark Mode */
-const toggle = document.getElementById("darkToggle");
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  toggle.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
-});
-</script>
-
-</body>
-</html>
+if __name__ == "__main__":
+    main()
