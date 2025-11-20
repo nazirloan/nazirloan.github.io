@@ -1,0 +1,38 @@
+import os
+import re
+from scholarly import scholarly
+
+# Your Google Scholar user ID
+GSCHOLAR_ID = "tuwg40gAAAAJ"
+
+def get_scholar_metrics(user_id):
+    # Get author object
+    author = scholarly.search_author_id(user_id)
+    author = scholarly.fill(author, sections=['basics', 'indices'])
+
+    # Get metrics
+    total_citations = author.get("citedby", "N/A")
+    h_index = author.get("hindex", "N/A")
+    i10_index = author.get("i10index", "N/A")
+
+    return total_citations, h_index, i10_index
+
+def update_html(citations, h_index, i10_index):
+    with open("index.html", "r", encoding="utf-8") as f:
+        html = f.read()
+
+    html = re.sub(r"\{\{CITATIONS\}\}", str(citations), html)
+    html = re.sub(r"\{\{HINDEX\}\}", str(h_index), html)
+    html = re.sub(r"\{\{I10INDEX\}\}", str(i10_index), html)
+
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+
+def main():
+    citations, h, i10 = get_scholar_metrics(GSCHOLAR_ID)
+    print("Fetched metrics:", citations, h, i10)
+    update_html(citations, h, i10)
+    print("index.html updated successfully.")
+
+if __name__ == "__main__":
+    main()
