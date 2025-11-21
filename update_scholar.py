@@ -1,21 +1,29 @@
-import os
+import requests
 import re
-from scholarly import scholarly
 
-# Your Google Scholar user ID
+# Your Google Scholar User ID
 GSCHOLAR_ID = "tuwg40gAAAAJ"
 
-def get_scholar_metrics(user_id):
-    # Get author object
-    author = scholarly.search_author_id(user_id)
-    author = scholarly.fill(author, sections=['basics', 'indices'])
+# SerpAPI endpoint
+API_URL = "https://serpapi.com/search"
 
-    # Get metrics
-    total_citations = author.get("citedby", "N/A")
-    h_index = author.get("hindex", "N/A")
-    i10_index = author.get("i10index", "N/A")
+def get_metrics():
+    params = {
+        "engine": "google_scholar_author",
+        "author_id": GSCHOLAR_ID,
+        "api_key": os.environ["SERPAPI_KEY"]
+    }
 
-    return total_citations, h_index, i10_index
+    response = requests.get(API_URL, params=params)
+    data = response.json()
+
+    # Extract metrics
+    citations = data.get("cited_by", {}).get("table", [{}])[0].get("citations", "N/A")
+    h_index = data.get("cited_by", {}).get("table", [{}])[1].get("h_index", "N/A")
+    i10_index = data.get("cited_by", {}).get("table", [{}])[2].get("i10_index", "N/A")
+
+    return citations, h_index, i10_index
+
 
 def update_html(citations, h_index, i10_index):
     with open("index.html", "r", encoding="utf-8") as f:
@@ -28,11 +36,12 @@ def update_html(citations, h_index, i10_index):
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
-def main():
-    citations, h, i10 = get_scholar_metrics(GSCHOLAR_ID)
-    print("Fetched metrics:", citations, h, i10)
-    update_html(citations, h, i10)
-    print("index.html updated successfully.")
 
 if __name__ == "__main__":
-    main()
+    try:
+        citations, hindex, i10 = get_metrics()
+        print("Fetched:", citations, hindex, i10)
+        update_html(citations, hindex, i10)
+        print("index.html updated successfully.")
+    except Exception as e:
+        print("Error:", e)
