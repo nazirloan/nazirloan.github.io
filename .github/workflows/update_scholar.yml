@@ -1,12 +1,12 @@
-name: Update Google Scholar Metrics
+name: Update Scholar Metrics
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: "0 */12 * * *"
+  workflow_dispatch:
 
 jobs:
-  run:
+  update:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,18 +21,19 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install scholarly
+        run: pip install requests
 
       - name: Run update script
         env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           SCHOLAR_ID: ${{ secrets.SCHOLAR_ID }}
         run: python update_scholar.py
 
-      - name: Commit and Push
+      - name: Commit and push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add index.html
-          git commit -m "Auto-update Scholar metrics" || echo "No changes to commit"
+          git commit -m "Updated scholar metrics" || echo "No changes"
           git pull --rebase
           git push --force
