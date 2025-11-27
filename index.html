@@ -216,6 +216,44 @@ body.dark #darkToggle { border-color:rgba(255,255,255,0.3); }
   font-size:13px;
 }
 
+
+/* Accordion */
+.accordion {
+  margin-top: 20px;
+}
+
+.acc-btn {
+  width: 100%;
+  text-align: left;
+  background: var(--accent-2);
+  color: white;
+  padding: 12px 14px;
+  border: none;
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.acc-btn.active {
+  background: var(--accent-1);
+}
+
+.acc-content {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease;
+  margin-bottom: 12px;
+}
+
+
+
+
 </style>
 </head>
 
@@ -372,89 +410,111 @@ Dr. Nazir Ahmed Loan
     </div>
 
     <div id="pub" class="section">
-      <h2>Publications</h2>
-      
-      <!--publication  -->
 
-<h3> Journal Articles</h3>
-<p style= "text-align: justify" > 
-<ol>
-<li>Loan, N. A., Hurrah, N. N., Parah, S. A., Lee, J. W., Sheikh, J. A., & Bhat, G. M. (2018). Secure and Robust Digital Image Watermarking using Coefficient Differencing and Chaotic Encryption. IEEE Access, Vol. 6, pp. 19876 – 19897, SCI IF: 3.745.  </li>
-<li>Loan, N. A., Parah, S. A., Sheikh, J. A., Akhoon, J. A., & Bhat, G. M. (2017). Hiding Electronic Patient Record (EPR) in medical images: A high capacity and computationally efficient technique for e-healthcare applications. Journal of biomedical informatics, vol. 73, pp. 125-136, SCI IF: 3.526. </li>
-<li>Altaf, N., Loan, N. A., Hussan, M., Parah, S. A., “TDLCI: An efficient scheme for tamper detection and localization in color images”. Multimedia Tools and Applications, 2024.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., Sheikh, J. A., Muhammad, K., De Macedo, A. R. L., De Albuquerque, V. H. C. “INDFORG: Industrial Forgery Detection using Automatic Rotation Angle Detection and Correction”. IEEE Transactions on Industrial Informatics, doi: 10.1109/TII.2020.3014158, SCI IF: 9.112.  </li>
-<li>Hurrah, N. N., Parah, S. A., Loan, N. A., Sheikh, J. A., Elhoseny, M., Muhammad, K., “Dual watermarking framework for privacy protection and content authentication of multimedia”. Future Generation Computer Systems, Elsevier, vol. 94, pp. 654-673, (May 2019). SCI IF: 6.125. Available at: https://doi.org/10.1016/j.future.2018.12.036.  </li>
-<li>Parah, S. A., Loan, N. A., Shah, A. A., Sheikh, J. A., & Bhat, G. M. (2018). A new secure and robust watermarking technique based on logistic map and modification of DC coefficient. Nonlinear Dynamics, vol. 93, issue 4, pp. 1933–19511, SCI IF: 4.867.  </li>
-<li>Kaw, J. A., Loan, N. A., Parah, S. A., Muhammad, K., Sheikh, J. A., & Bhat, G. M. (2019). A reversible and secure patient information hiding system for IoT driven e-health. International Journal of Information Management, vol. 45, pp. 262-275, SCI IF: 8.210.  </li>
-<li>Gull, S., Loan, N. A., Parah, S. A., Sheikh, J. A., & Bhat, G. M. (2018). An efficient watermarking technique for tamper detection and localization of medical images. Journal of Ambient Intelligence and Humanized Computing, vol. 11, pp. 1799-1808-(retracted)  </li>
-<li>Parah, S. A., Sheikh, J. A., Loan, N. A., Ahad, F., & Bhat, G. M. (2018). Utilizing neighborhood coefficient correlation: a new image watermarking technique robust to singular and hybrid attacks. Multidimensional Systems and Signal Processing, vol. 29, issue 3, pp. 1095-1117, SCI IF: 1.810.  </li>
-<li>Parah, S. A., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2016). Robust and blind watermarking technique in DCT domain using inter-block coefficient differencing. Digital Signal Processing, vol. 53, pp. 11-24, SCI IF: 2.871.  </li>
-<li>Parah, S. A., Sheikh, J. A., Akhoon, J. A., & Loan, N. A. (2018). Electronic Health Record hiding in Images for smart city applications: A computationally efficient and reversible information hiding technique for secure communication. Future Generation Computer Systems, vol. 108, pp. 935-949, SCI IF: 6.125.  </li>
-<li>Shabir A. Parah, Javaid A. Kaw, Paolo Bellavista, Nazir A. Loan, G. M. Bhat, Khan Muhammad, & Albuquerque Victor, “Efficient Security and Authentication for Edge-based Internet of Medical Things” in IEEE Internet of Things Journal, 10.1109/JIOT.2020.3038009, SCI IF: 9.5.  </li>
-<li>Parah, S. A., Ahad, F., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2017). A New Reversible and high capacity data hiding technique for E-healthcare applications. Multimedia Tools and Applications, Vol. 76, issue 3, pp. 3943-3975, SCI IF: 2.313.  </li>
-<li>Parah, S. A., Sheikh, J. A., Akhoon, J. A., Loan, N. A., & Bhat, G. M. (2018). Information hiding in edges: a high capacity information hiding technique using hybrid edge detection. Multimedia Tools and Applications, vol. 77, issue 1, pp. 185-207, SCI IF: 2.313.  </li>
-<li>Parah, S. A., Sheikh, J. A., Ahad, F., Loan, N. A., & Bhat, G. M. (2017). Information hiding in medical images: a robust medical image watermarking system for E-healthcare. Multimedia Tools and Applications, vol. 76, issue 8, pp. 10599-10633, SCI IF: 2.313.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., & Iqbal, Z., “Area Optimized Decimation Filter for Wideband ΣΔ Analog to Digital Converters", International Journal of Emerging Technologies and Innovative Research (UGC Approved), ISSN:2349-5162, Vol. 6, Issue 2, page no. pp334-341, 2019. Available at: http://doi.one/10.1729/Journal.19844.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., & Sheikh, J. A., “A Hybrid Transform Domain Based Secure and Robust Watermarking Technique for Privacy for Medical Applications,” in Int. Journal of Advance Research in Science and Engg. (IJARSE), (UGC Approved at time of publish), Vol. 7(4), 3066-3078, March 2018.  </li>
-<li>Hurrah, N. N., Parah, S. A., & Loan, N. A., “Power Efficient Multi-Stage Decimation Filter for Wideband Sigma-Delta ADCs", International Journal of Computer Sciences and Engineering (UGC Approved), ISSN:2347-2693, Vol.7, Issue 3, pp. 854-860, 2019. Available at: https://doi.org/10.26438/ijcse/v7i3.854860.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., & Sheikh, J. A., “Realization of Highly Secure Fragile Watermarking Technique for Authentication of Digital Images”, Advanced Research in Electrical and Electronic Engineering, e-ISSN: 2349-5812, Vol. 5, Issue 3, 2018, pp. 188-192.   
-</ol>
-</p>
+  <h2>Publications</h2>
 
- <h3>Book Chapters </h3>
-<p style= "text-align: justify" > 
-<ol>
-<li>Parah, S. A., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2017). A Robust and Computationally Efficient Digital Watermarking Technique Using Inter Block Pixel Differencing. In Multimedia Forensics and Security (pp. 223-252). Springer, Cham.  </li>
-<li>Parah, S. A., Ahmad, I., Loan, N. A., Muhammad, K., Sheikh, J. A., & Bhat, G. M. (2019). Realization of an Adaptive Data Hiding System for Electronic Patient Record, Embedding in Medical Images. In Security in Smart Cities: Models, Applications, and Challenges (pp. 47-70). Springer, Cham.  </li>
-<li>Parah, S. A., Bashir, A., Manzoor, M., Gulzar, A., Firdous, M., Loan, N. A., & Sheikh, J. A. (2019). Secure and reversible data hiding scheme for healthcare system using magic rectangle and a new interpolation technique. In Healthcare Data Analytics and Management (pp. 267-309). Academic Press.  </li>
-<li>Parah, S. A., Digoo, T., Hamdani, G. A., Shah, A. A., Khan, I., Khan, O., Loan, N. A., & Sheikh, J. A. (2019). A reversible and secure electronic patient record embedding technique using histogram bin shifting and RC6 encryption. In Healthcare Data Analytics and Management (pp. 245-266). Academic Press.  </li>
-<li>Parah, S. A., Ahad, F., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2017). Pixel repetition technique: A high capacity and reversible data hiding method for e-healthcare applications. In Intelligent Techniques in Signal Processing for Multimedia Security (pp. 371-398). Springer, Cham.  
-</ol>
+  <!-- Accordion Container -->
+  <div class="accordion">
 
-</p>
-</p>
+    <!-- SECTION 1 -->
+    <div class="acc-item">
+      <button class="acc-btn">Journal Articles</button>
+      <div class="acc-content">
+        <ol>
+            
+            
+          <li> <b>Loan, N. A.,</b> Hurrah, N. N., Parah, S. A., Lee, J. W., Sheikh, J. A., & Bhat, G. M. (2018). Secure and Robust Digital Image Watermarking using Coefficient Differencing and Chaotic Encryption. IEEE Access, Vol. 6, pp. 19876 – 19897, SCI IF: 3.745.  </li>
+          <li><b>Loan, N. A.,</b>Parah, S. A., Sheikh, J. A., Akhoon, J. A., & Bhat, G. M. (2017). Hiding Electronic Patient Record (EPR) in medical images: A high capacity and computationally efficient technique for e-healthcare applications. Journal of biomedical informatics, vol. 73, pp. 125-136, SCI IF: 3.526. </li>
+          <li>Altaf, N., <b>Loan, N. A.,</b> Hussan, M., Parah, S. A., “TDLCI: An efficient scheme for tamper detection and localization in color images”. Multimedia Tools and Applications, 2024.  </li>
+          <li>Hurrah, N. N., <b>Loan, N. A.,</b> Parah, S. A., Sheikh, J. A., Muhammad, K., De Macedo, A. R. L., De Albuquerque, V. H. C. “INDFORG: Industrial Forgery Detection using Automatic Rotation Angle Detection and Correction”. IEEE Transactions on Industrial Informatics, doi: 10.1109/TII.2020.3014158, SCI IF: 9.112.  </li>
+          <li>Hurrah, N. N., Parah, S. A.,<b>Loan, N. A.,</b> Sheikh, J. A., Elhoseny, M., Muhammad, K., “Dual watermarking framework for privacy protection and content authentication of multimedia”. Future Generation Computer Systems, Elsevier, vol. 94, pp. 654-673, (May 2019). SCI IF: 6.125. Available at: https://doi.org/10.1016/j.future.2018.12.036.  </li>
+          <li>Parah, S. A., <b>Loan, N. A.,</b> Shah, A. A., Sheikh, J. A., & Bhat, G. M. (2018). A new secure and robust watermarking technique based on logistic map and modification of DC coefficient. Nonlinear Dynamics, vol. 93, issue 4, pp. 1933–19511, SCI IF: 4.867.  </li>
+          <li>Kaw, J. A., <b>Loan, N. A.,</b> Parah, S. A., Muhammad, K., Sheikh, J. A., & Bhat, G. M. (2019). A reversible and secure patient information hiding system for IoT driven e-health. International Journal of Information Management, vol. 45, pp. 262-275, SCI IF: 8.210.  </li>
+          <li>Gull, S., <b>Loan, N. A.,</b> Parah, S. A., Sheikh, J. A., & Bhat, G. M. (2018). An efficient watermarking technique for tamper detection and localization of medical images. Journal of Ambient Intelligence and Humanized Computing, vol. 11, pp. 1799-1808-(retracted)  </li>
+          <li>Parah, S. A., Sheikh, J. A., <b>Loan, N. A.,</b> Ahad, F., & Bhat, G. M. (2018). Utilizing neighborhood coefficient correlation: a new image watermarking technique robust to singular and hybrid attacks. Multidimensional Systems and Signal Processing, vol. 29, issue 3, pp. 1095-1117, SCI IF: 1.810.  </li>
+          <li>Parah, S. A., Sheikh, J. A., <b>Loan, N. A.,</b> & Bhat, G. M. (2016). Robust and blind watermarking technique in DCT domain using inter-block coefficient differencing. Digital Signal Processing, vol. 53, pp. 11-24, SCI IF: 2.871.  </li>
+          <li>Parah, S. A., Sheikh, J. A., Akhoon, J. A., & <b>Loan, N. A.,</b>(2018). Electronic Health Record hiding in Images for smart city applications: A computationally efficient and reversible information hiding technique for secure communication. Future Generation Computer Systems, vol. 108, pp. 935-949, SCI IF: 6.125.  </li>
+          <li>Shabir A. Parah, Javaid A. Kaw, Paolo Bellavista, <b>Loan, N. A.,</b> G. M. Bhat, Khan Muhammad, & Albuquerque Victor, “Efficient Security and Authentication for Edge-based Internet of Medical Things” in IEEE Internet of Things Journal, 10.1109/JIOT.2020.3038009, SCI IF: 9.5.  </li>
+          <li>Parah, S. A., Ahad, F., Sheikh, J. A., <b>Loan, N. A.,</b> & Bhat, G. M. (2017). A New Reversible and high capacity data hiding technique for E-healthcare applications. Multimedia Tools and Applications, Vol. 76, issue 3, pp. 3943-3975, SCI IF: 2.313.  </li>
+          <li>Parah, S. A., Sheikh, J. A., Akhoon, J. A., <b>Loan, N. A.,</b>& Bhat, G. M. (2018). Information hiding in edges: a high capacity information hiding technique using hybrid edge detection. Multimedia Tools and Applications, vol. 77, issue 1, pp. 185-207, SCI IF: 2.313.  </li>
+          <li>Parah, S. A., Sheikh, J. A., Ahad, F., <b>Loan, N. A.,</b> & Bhat, G. M. (2017). Information hiding in medical images: a robust medical image watermarking system for E-healthcare. Multimedia Tools and Applications, vol. 76, issue 8, pp. 10599-10633, SCI IF: 2.313.  </li>
+          <li>Hurrah, N. N., <b>Loan, N. A.,</b> Parah, S. A., & Iqbal, Z., “Area Optimized Decimation Filter for Wideband ΣΔ Analog to Digital Converters", International Journal of Emerging Technologies and Innovative Research (UGC Approved), ISSN:2349-5162, Vol. 6, Issue 2, page no. pp334-341, 2019. Available at: http://doi.one/10.1729/Journal.19844.  </li>
+          <li>Hurrah, N. N., <b>Loan, N. A.,</b> Parah, S. A., & Sheikh, J. A., “A Hybrid Transform Domain Based Secure and Robust Watermarking Technique for Privacy for Medical Applications,” in Int. Journal of Advance Research in Science and Engg. (IJARSE), (UGC Approved at time of publish), Vol. 7(4), 3066-3078, March 2018.  </li>
+          <li>Hurrah, N. N., Parah, S. A., & <b>Loan, N. A.,</b> “Power Efficient Multi-Stage Decimation Filter for Wideband Sigma-Delta ADCs", International Journal of Computer Sciences and Engineering (UGC Approved), ISSN:2347-2693, Vol.7, Issue 3, pp. 854-860, 2019. Available at: https://doi.org/10.26438/ijcse/v7i3.854860.  </li>
+          <li>Hurrah, N. N., <b>Loan, N. A.,</b> Parah, S. A., & Sheikh, J. A., “Realization of Highly Secure Fragile Watermarking Technique for Authentication of Digital Images”, Advanced Research in Electrical and Electronic Engineering, e-ISSN: 2349-5812, Vol. 5, Issue 3, 2018, pp. 188-192.</li>  
 
-<h3>Book </h3>
-<p style= "text-align: justify" > 
+        
+        </ol>
+      </div>
+    </div>
 
-Nasir Hurrah, Nazir Loan, Design of Oversampled ΣΔ ADC Decimation Filters with High Performance: A state-of-the-art work for researchers, LAP LAMBERT Academic Publishing, 2021 </p>
+    <!-- SECTION 2 -->
+    <div class="acc-item">
+      <button class="acc-btn">Book Chapters</button>
+      <div class="acc-content">
+        <ol>
+         <li>Parah, S. A., Sheikh, J. A., <b>Loan, N. A.,</b>& Bhat, G. M. (2017). A Robust and Computationally Efficient Digital Watermarking Technique Using Inter Block Pixel Differencing. In Multimedia Forensics and Security (pp. 223-252). Springer, Cham.  </li> 
+         <li>Parah, S. A., Ahmad, I., <b>Loan, N. A.,</b>Muhammad, K., Sheikh, J. A., & Bhat, G. M. (2019). Realization of an Adaptive Data Hiding System for Electronic Patient Record, Embedding in Medical Images. In Security in Smart Cities: Models, Applications, and Challenges (pp. 47-70). Springer, Cham.  </li>
+         <li>Parah, S. A., Bashir, A., Manzoor, M., Gulzar, A., Firdous, M., <b>Loan, N. A.,</b>& Sheikh, J. A. (2019). Secure and reversible data hiding scheme for healthcare system using magic rectangle and a new interpolation technique. In Healthcare Data Analytics and Management (pp. 267-309). Academic Press.  </li>
+         <li>Parah, S. A., Digoo, T., Hamdani, G. A., Shah, A. A., Khan, I., Khan, O., <b>Loan, N. A.,</b>& Sheikh, J. A. (2019). A reversible and secure electronic patient record embedding technique using histogram bin shifting and RC6 encryption. In Healthcare Data Analytics and Management (pp. 245-266). Academic Press.  </li>
+         <li>Parah, S. A., Ahad, F., Sheikh, J. A., <b>Loan, N. A.,</b>& Bhat, G. M. (2017). Pixel repetition technique: A high capacity and reversible data hiding method for e-healthcare applications. In Intelligent Techniques in Signal Processing for Multimedia Security (pp. 371-398). Springer, Cham. </li> 
 
- <h3>International Conferences </h3>
-<p style= “text-align: justify” > 
-<ol>
+        </ol>
+      </div>
+    </div>
 
-<li>Loan, N. A., Hurrah, N. N., Parah, S. A., & Sheikh, J. A. (2017, December). High capacity reversible stenographic technique based on image resizing and pixel permutation. In 2017 Fourth International Conference on Image Information Processing (ICIIP), (pp. 1-6). IEEE.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., & Sheikh, J. A. (2017, December). A transform domain based robust color image watermarking scheme for single and dual attacks. In 2017 Fourth International Conference on Image Information Processing (ICIIP), (pp. 1-5). IEEE.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., & Sheikh, J. A. (2018, April). A hybrid Transform Based Secure and Robust Watermarking Technique for Privacy for Medical Applications. In 1st international conference on recent developments in science, humanities & Management-(ICRDSHM), 20 March 2018.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., & Sheikh, J. A., “Realization of Highly Secure Fragile Watermarking Technique for Authentication of Digital Images” in Int. Conf. on Recent Trends in Engg., Tech., Agriculture, Applied Sciences, Humanities and Business Management for Sustainable Development (ETAHBS-2018), NIT Srinagar, J&K, India, 20-21 Oct., 2018.  </li>
-<li>Hurrah, N. N., Loan, N. A., Parah, S. A., & Sheikh, J. A., “Realization of Highly Accurate Tamper Localization Framework for Digital Image Watermarking Applications” in Proc. Of 5th Int. Conf. on Recent Trends & Advancements in Engg. Tech., SMVDU Katra, J&K, India, 25-26 Oct, 2018. </li>
-<li>Parah, S. A., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2015, March). A blind watermarking technique in spatial domain using inter-block pixel value differencing. In 2015 International Conference on Advances in Computer, Communication and Electronic Engineering (COMMUNE) (pp. 321-326). </li>
-<li>Parah, S. A., Akhoon, J. A., Sheikh, J. A., Loan, N. A., & Bhat, G. M. (2015, December). A high capacity data hiding scheme based on edge detection and even-odd plane separation. In 2015 Annual IEEE India Conference (INDICON), (pp. 1-5). IEEE. </li>
-<li>Qureshi, I., Parah, S. A., Loan, N. A., Hurrah, N. N., Qureshi G. J., “Realization of a robust watermarking system in spatial domain” in Proceedings of 3rd International Conference on Recent Innovations in Computing (ICRIC-2020), Lecture Notes in Electrical Engineering, Springer. 
-</ol>
+    <!-- SECTION 3 -->
+    <div class="acc-item">
+      <button class="acc-btn">Book</button>
+      <div class="acc-content">
+        <p>Nasir Hurrah & <b> Nazir Loan,</b> Design of Oversampled ΣΔ ADC Decimation Filters with High Performance: A state-of-the-art work for researchers, LAP LAMBERT Academic Publishing, 2021 </p>
+      </div>
+    </div>
 
-</p>
+    <!-- SECTION 4 -->
+    <div class="acc-item">
+      <button class="acc-btn">International Conferences</button>
+      <div class="acc-content">
+        <ol>
+       <li> <b>Loan, N. A., </b>Hurrah, N. N., Parah, S. A., & Sheikh, J. A. (2017, December). High capacity reversible stenographic technique based on image resizing and pixel permutation. In 2017 Fourth International Conference on Image Information Processing (ICIIP), (pp. 1-6). IEEE.  </li>
+       <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Parah, S. A., & Sheikh, J. A. (2017, December). A transform domain based robust color image watermarking scheme for single and dual attacks. In 2017 Fourth International Conference on Image Information Processing (ICIIP), (pp. 1-5). IEEE.  </li>
+       <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Parah, S. A., & Sheikh, J. A. (2018, April). A hybrid Transform Based Secure and Robust Watermarking Technique for Privacy for Medical Applications. In 1st international conference on recent developments in science, humanities & Management-(ICRDSHM), 20 March 2018.  </li>
+       <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Parah, S. A., & Sheikh, J. A., “Realization of Highly Secure Fragile Watermarking Technique for Authentication of Digital Images” in Int. Conf. on Recent Trends in Engg., Tech., Agriculture, Applied Sciences, Humanities and Business Management for Sustainable Development (ETAHBS-2018), NIT Srinagar, J&K, India, 20-21 Oct., 2018.  </li>
+       <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Parah, S. A., & Sheikh, J. A., “Realization of Highly Accurate Tamper Localization Framework for Digital Image Watermarking Applications” in Proc. Of 5th Int. Conf. on Recent Trends & Advancements in Engg. Tech., SMVDU Katra, J&K, India, 25-26 Oct, 2018. </li>
+       <li>Parah, S. A., Sheikh, J. A.,  <b>Loan, N. A., </b>& Bhat, G. M. (2015, March). A blind watermarking technique in spatial domain using inter-block pixel value differencing. In 2015 International Conference on Advances in Computer, Communication and Electronic Engineering (COMMUNE) (pp. 321-326). </li>
+       <li>Parah, S. A., Akhoon, J. A., Sheikh, J. A.,  <b>Loan, N. A., </b>& Bhat, G. M. (2015, December). A high capacity data hiding scheme based on edge detection and even-odd plane separation. In 2015 Annual IEEE India Conference (INDICON), (pp. 1-5). IEEE. </li>
+       <li>Qureshi, I., Parah, S. A.,  <b>Loan, N. A., </b>Hurrah, N. N., Qureshi G. J., “Realization of a robust watermarking system in spatial domain” in Proceedings of 3rd International Conference on Recent Innovations in Computing (ICRIC-2020), Lecture Notes in Electrical Engineering, Springer.</li> 
 
+        </ol>
+      </div>
+    </div>
 
-<h3>National Conferences/Seminars	</h3>
-<p style= "text-align: justify" > 
-<ol>
+    <!-- SECTION 5 -->
+    <div class="acc-item">
+      <button class="acc-btn">National Conferences</button>
+      <div class="acc-content">
+        <ol>
+          <li> <b>Loan, N. A., </b>Parah, S. A., Sheikh, J. A., Hurrah, N. N., & Akhoon, J. A. (2016). Robust Watermarking for General and Medical Images in Pixel Domain. In Proceedings of 2016 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 18-19 March, 2016, pp. 61. </li>
+          <li> <b>Loan, N. A., </b>Hurrah, N. N., Akhoon, J. A.,  Parah, S. A., & Sheikh, J. A., Nazir A. Loan, Nasir N. Hurrah, Jahangir A. Akhoon, Shabir A. Parah & Javaid A. Sheikh, “High Capacity Watermarking Technique for Authentication of Medical Images”, in Proc. of 13th J&K Science Congress, University of Kashmir, J&K, ISBN: 978-93-5291-653-5. </li>
+          <li> <b>Loan, N. A., </b>Akhoon, J. A., Hurrah, N. N., Parah, S. A., & Sheikh, J. A., (2017). High Capacity Reversible Data Hiding Technique based on Image Resize and Pixel Scrambling.  In Proceedings of 2017 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 24-25 March, 2017, pp. 22. </li>
+          <li> <b>Loan, N. A., </b>Hurrah, N. N., & Parah, S. A., (2018). A New Fragile and Semi-Reversible Image Watermarking Technique for Temper Detection and Authentication. in Proceedings of 2018 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 3rd and 4th April, 2018, pp. 31. </li>
+          <li> <b>Loan, N. A., </b>Hurrah, N. N., Parah, S. A., Akhoon, J. A., & Sheikh, J. A., (2018). Blind Robust Image Rotation Estimation Technique Based on Pythagorean Theorem. In Proceedings of 13th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 02-04 April, 2018, pp. 704. </li>
+          <li>Akhoon, J. A. Parah, S. A., Sheikh, J. A.,  <b>Loan, N. A., </b>& Hurrah, N. N., (2016). On the Realization of a High Capacity Data Hiding Technique for Color Images using Edge Detection. In Proceedings of 2016 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 18-19 March, 2016, pp. 76. </li>
+          <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Akhoon, J. A., Parah, S. A., Masoodi, I. S., & Sheikh, J. A., (2017). A Multipurpose Robust Watermarking Algorithm with Multilayer Security. In Proceedings of 2017 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 24-25 March, 2017, pp. 66. </li>
+          <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Akhoon, J. A., Parah, S. A., & Sheikh, J. A., (2018). A Highly Sensitive Encryption Technique for High Security Watermarking Applications. In Proceedings of 13th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 02-04 April, 2018, pp. 674. </li>
+          <li>Kaw, J. A.,  <b>Loan, N. A., </b>Bhat, G. M., Sheikh, J. A., Amin, M., Parah, S. A., (2017), Reversible Stenographic Technique Based on Pixel Repetition Method and Data Shifting, In Proceedings of 2017 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University. </li>
+          <li>Hurrah, N. N., Parah, S. A., Sheikh, J. A.,  <b>Loan, N. A., </b>& Akhoon, J. A., (2015), Hardware realization of Watermarking Algorithm for Multimedia Applications. In Proceedings of 11th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 12-14 October, 2015. </li>
+          <li>Parah, S. A., Sheikh, J. A., Akhoon, J. A.,  <b>Loan, N. A., </b>Hurrah, N. N., & Ahad, F., (2015), High Capacity Steganographic Technique based on Modular Arithmetic. In Proceedings of 11th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 12-14 October, 2015. </li>
+          <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Masoodi, I. S., & Parah, S. A., “Development of robust digital watermarking technique with two level security for simultaneous attacks,” National Seminar on National Development Through Science and Technology 25-26 September, 2017</li>
+          <li>Hurrah, N. N.,  <b>Loan, N. A., </b>Akhoon, J. A., Amin, M., “Power Efficient Non-Recursive Decimation Filter for Oversampled SD ADCS”, in Proc. of 11th J&K Science Congress, University of Kashmir, J&K, ISBN: 978-93-82288-87-9. </li>
 
-<li>Loan, N. A., Parah, S. A., Sheikh, J. A., Hurrah, N. N., & Akhoon, J. A. (2016). Robust Watermarking for General and Medical Images in Pixel Domain. In Proceedings of 2016 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 18-19 March, 2016, pp. 61. </li>
-<li>Loan, N. A., Hurrah, N. N., Akhoon, J. A.,  Parah, S. A., & Sheikh, J. A., Nazir A. Loan, Nasir N. Hurrah, Jahangir A. Akhoon, Shabir A. Parah & Javaid A. Sheikh, “High Capacity Watermarking Technique for Authentication of Medical Images”, in Proc. of 13th J&K Science Congress, University of Kashmir, J&K, ISBN: 978-93-5291-653-5. </li>
-<li>Loan, N. A., Akhoon, J. A., Hurrah, N. N., Parah, S. A., & Sheikh, J. A., (2017). High Capacity Reversible Data Hiding Technique based on Image Resize and Pixel Scrambling.  In Proceedings of 2017 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 24-25 March, 2017, pp. 22. </li>
-<li>Loan, N. A., Hurrah, N. N., & Parah, S. A., (2018). A New Fragile and Semi-Reversible Image Watermarking Technique for Temper Detection and Authentication. in Proceedings of 2018 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 3rd and 4th April, 2018, pp. 31. </li>
-<li>Loan, N. A., Hurrah, N. N., Parah, S. A., Akhoon, J. A., & Sheikh, J. A., (2018). Blind Robust Image Rotation Estimation Technique Based on Pythagorean Theorem. In Proceedings of 13th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 02-04 April, 2018, pp. 704. </li>
-<li>Akhoon, J. A. Parah, S. A., Sheikh, J. A., Loan, N. A., & Hurrah, N. N., (2016). On the Realization of a High Capacity Data Hiding Technique for Color Images using Edge Detection. In Proceedings of 2016 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 18-19 March, 2016, pp. 76. </li>
-<li>Hurrah, N. N., Loan, N. A., Akhoon, J. A., Parah, S. A., Masoodi, I. S., & Sheikh, J. A., (2017). A Multipurpose Robust Watermarking Algorithm with Multilayer Security. In Proceedings of 2017 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University of Kashmir, Srinagar, India. 24-25 March, 2017, pp. 66. </li>
-<li>Hurrah, N. N., Loan, N. A., Akhoon, J. A., Parah, S. A., & Sheikh, J. A., (2018). A Highly Sensitive Encryption Technique for High Security Watermarking Applications. In Proceedings of 13th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 02-04 April, 2018, pp. 674. </li>
-<li>Kaw, J. A., Loan, N. A., Bhat, G. M., Sheikh, J. A., Amin, M., Parah, S. A., (2017), Reversible Stenographic Technique Based on Pixel Repetition Method and Data Shifting, In Proceedings of 2017 UGC Sponsored National Seminar on Electronic Devices, Systems and Information Security, Department of Electronics and Instrumentation Technology University. </li>
-<li>Hurrah, N. N., Parah, S. A., Sheikh, J. A., Loan, N. A., & Akhoon, J. A., (2015), Hardware realization of Watermarking Algorithm for Multimedia Applications. In Proceedings of 11th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 12-14 October, 2015. </li>
-<li>Parah, S. A., Sheikh, J. A., Akhoon, J. A., Loan, N. A., Hurrah, N. N., & Ahad, F., (2015), High Capacity Steganographic Technique based on Modular Arithmetic. In Proceedings of 11th Session of J&K Science Congress, University of Kashmir, Srinagar, India. 12-14 October, 2015. </li>
-<li>Hurrah, N. N., Loan, N. A., Masoodi, I. S., & Parah, S. A., “Development of robust digital watermarking technique with two level security for simultaneous attacks,” National Seminar on National Development Through Science and Technology 25-26 September, 2017</li>
-<li>Hurrah, N. N., Loan, N. A., Akhoon, J. A., Amin, M., “Power Efficient Non-Recursive Decimation Filter for Oversampled SD ADCS”, in Proc. of 11th J&K Science Congress, University of Kashmir, J&K, ISBN: 978-93-82288-87-9. </li>
-</ol>
-</p>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!--  end of publication  -->
 
 
@@ -524,6 +584,36 @@ document.getElementById("toggleCV").onclick = function() {
 };
 
 </script>
+
+<script>
+const accButtons = document.querySelectorAll(".acc-btn");
+
+accButtons.forEach(btn => {
+  btn.addEventListener("click", function() {
+
+    // Close all others
+    accButtons.forEach(b => {
+      if (b !== this) {
+        b.classList.remove("active");
+        b.nextElementSibling.style.maxHeight = null;
+      }
+    });
+
+    // Toggle current
+    this.classList.toggle("active");
+    let content = this.nextElementSibling;
+
+    if (this.classList.contains("active")) {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+      content.style.maxHeight = null;
+    }
+  });
+});
+</script>
+
+
+
 
 </body>
 </html>
